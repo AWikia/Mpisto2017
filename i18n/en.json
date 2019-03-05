@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"skinname-mpisto": "Mpisto2017",
+	"mpisto-desc": "A Recreative Skin with theming, devired from Monobook. Re-released with bug-fixes by MWSC in 2019",
+	"mpisto.css": "/* CSS placed here will affect users of the Mpisto skin */",
+	"mpisto.js": "/* Any JavaScript here will be loaded for users using the Mpisto skin */",
+	"mpisto-jumptotop": "back to top",
+	"mpisto-jumptopersonal": "user tools",
+	"mpisto-jumptonavigation": "Jump to navigation",
+	"mpisto-jumptosearch": "Jump to search",
+	"mpisto-more-actions": "More",
+	"mpisto-cactions-label": "Page actions",
+	"mpisto-notifications-link": "Notifications ($1)",
+	"mpisto-notifications-link-none": "Notifications",
+	"mpisto-responsive-label": "Enable responsive MonoBook design"
+}

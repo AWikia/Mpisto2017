@@ -1,0 +1,95 @@
+{
+	"name": "Mpisto",
+	"author": [
+		"A Techno Services (Original Version)",
+		"Mpisto Scenes Community (2019 Re-release)",
+		"..."
+	],
+	"url": "https://www.mediawiki.org/wiki/Skin:Mpisto",
+	"descriptionmsg": "mpisto-desc",
+	"namemsg": "skinname-mpisto",
+	"license-name": "GPL-2.0-or-later",
+	"type": "skin",
+	"requires": {
+		"MediaWiki": ">= 1.29.0"
+	},
+	"ValidSkinNames": {
+		"mpisto": "Mpisto"
+	},
+	"SkinOOUIThemes": {
+		"mpisto": "Apex"
+	},
+	"DefaultUserOptions": {
+		"mpisto-responsive": false
+	},
+	"Hooks": {
+		"GetPreferences": "SkinMpisto::onGetPreferences",
+		"ResourceLoaderRegisterModules": "SkinMpisto::registerMobileExtensionStyles"
+	},
+	"MessagesDirs": {
+		"Mpisto": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"skins.mpisto.styles": {
+			"styles": {
+				"resources/screen-common.less": {
+					"media": "screen"
+				},
+				"resources/screen-desktop.css": {
+					"media": "screen"
+				},
+				"resources/do things simple.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"skins.mpisto.responsive": {
+			"targets": [ "desktop", "mobile" ],
+			"styles": {
+				"resources/screen-common.less": {
+					"media": "screen"
+				},
+				"resources/screen-desktop.css": {
+					"media": "screen and (min-width: 551px)"
+				},
+				"resources/screen-mobile.less": {
+					"media": "screen and (max-width: 550px)"
+				}
+			}
+		},
+		"skins.mpisto.mobile": {
+			"targets": [ "desktop", "mobile" ],
+			"scripts": [
+				"resources/mobile.js"
+			],
+			"styles": {
+				"resources/mobile.js.less": {
+					"media": "screen and (max-width: 550px)"
+				}
+			},
+			"dependencies": [
+				"mediawiki.util"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteSkinPath": "Mpisto"
+	},
+	"ResourceModuleSkinStyles": {
+		"mpisto": {
+			"+mediawiki.action.view.redirectPage": "resources/skinStyles/mediawiki.action.view.redirectPage.css",
+			"+mediawiki.special.preferences.styles": "resources/skinStyles/mediawiki.special.preferences.styles.less",
+			"+mediawiki.notification": "resources/skinStyles/mediawiki.notification.less",
+			"+oojs-ui-core.styles": "resources/skinStyles/ooui.less",
+			"+ext.uls.interface": "resources/skinStyles/ext.uls.interface.less"
+		}
+	},
+	"AutoloadClasses": {
+		"SkinMpisto": "includes/SkinMpisto.php",
+		"MpistoTemplate": "includes/MpistoTemplate.php"
+	},
+	"manifest_version": 1
+}

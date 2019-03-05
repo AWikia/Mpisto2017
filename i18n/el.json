@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dead3y3",
+			"Geraki",
+			"Nikosgranturismogt"
+		]
+	},
+	"mpisto-desc": "Ένα επαναδημιουργικό θέμα εμφάνισης με θεματισμό, που προέρχεται από το Monobook. Επανακυκλοφορύθηκε με διορθώσεις σφαλμάτων από την MWSC το 2019",
+	"mpisto.css": "/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Mpisto skin */",
+	"mpisto.js": "/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Mpisto skin */",
+	"mpisto-jumptotop": "πίσω στην κορυφή",
+	"mpisto-jumptopersonal": "εργαλεία χρήστη",
+	"mpisto-jumptonavigation": "Πήδηση στην πλοήγηση",
+	"mpisto-jumptosearch": "Πήδηση στην αναζήτηση",
+	"mpisto-more-actions": "Περισσότερα",
+	"mpisto-cactions-label": "Ενέργειες σελίδας",
+	"mpisto-notifications-link": "Ειδοποιήσεις ($1)",
+	"mpisto-notifications-link-none": "Ενημερώσεις"
+}
