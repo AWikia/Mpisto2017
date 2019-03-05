@@ -1,0 +1,284 @@
+/* Touch Wiz */
+:root {
+--background-image:url("touch wiz.jpg") no-repeat;
+--background-color:#5eb4c5;
+--background-size:1366px 1366px;
+--link-color:#fafafa;
+--content-bg:#59bfb2;
+--content-border:#fff;
+--content-color:#fff;
+--personal-color:#5eb4c5;
+--personal-border:#fff;
+--button-color:#2FCCB8;
+--button-color-med:#2CBFAD;
+--button-color-dark:#29B3A1;
+--button-color-darker:#26A696;
+--elements-opacity:0.89;
+--footer-color:89,191,178;
+}
+
+/* Normal */
+:root {
+--background-image:url("headbg.jpg") no-repeat;
+--background-color:#e995ca;
+--background-size:2200px 1000px;
+--link-color:#18bbc5;
+--content-bg:#ffffff;
+--content-color:#000000;
+--content-border:#b0a8ad;
+--personal-color:#ffffff;
+--personal-border:#f9f9f9;
+--button-color:#18BBC5;
+--button-color-med:#16AFB8;
+--button-color-dark:#15A3AC;
+--button-color-darker:#13979F;
+--elements-opacity:0.91;
+--footer-color:255,255,255;
+}
+
+/* Jade */
+:root {
+--background-image:url("headbg.jpg") no-repeat;
+--background-color:#e995ca;
+--background-size:2200px 1000px;
+--link-color:#e626a6;
+--content-bg:#a9b9c1;
+--content-border:#da8a0b;
+--content-color:#0109a1;
+--personal-color:#a3c6e9;
+--personal-border:#f9e9d9;
+--button-color:#20CCD6;
+--button-color-med:#1EC0C9;
+--button-color-dark:#1CB4BD;
+--button-color-darker:#1AA8B0;
+--elements-opacity:0.91;
+--footer-color:169,185,193;
+}
+/* Babygirl */
+:root {
+--background-image:url("headbg.jpg") no-repeat;
+--background-color:#e995ca;
+--background-size:2200px 1000px;
+--link-color:#a910b3;
+--content-bg:#abcdef;
+--content-border:#fedcba;
+--content-color:#123456;
+--personal-color:#789012;
+--personal-border:#210987;
+--button-color:#A910B3;
+--button-color-med:#9D0EA6;
+--button-color-dark:#910D9A;
+--button-color-darker:#850C8D;
+--elements-opacity:0.894;
+--footer-color:18,52,86;
+}
+
+/* Orbitron */
+:root {
+--background-image:url("headbg.jpg") no-repeat;
+--background-color:#e995ca;
+--background-size:2200px 1000px;
+--link-color:magenta;
+--content-bg:pink;
+--content-border:#ffb6c1;
+--content-color:#020202;
+--personal-color:#ff8093;
+--personal-border:#f7f7f9;
+--button-color:#FF0051;
+--button-color-med:#F3004D;
+--button-color-dark:#E60049;
+--button-color-darker:#D90044;
+--elements-opacity:0.91;
+--footer-color:255,192,203;
+}
+
+/* Scenes */
+:root {
+--background-image:url("headbg.jpg") no-repeat;
+--background-color:#a99b3a;
+--background-size:2200px 1000px;
+--link-color:#18aad5;
+--content-bg:#abc123;
+--content-border:#ace135;
+--content-color:#000111;
+--personal-color:#f7f7f7;
+--personal-border:#d9d9d9;
+--button-color:#3D3D99;
+--button-color-med:#38388C;
+--button-color-dark:#32327F;
+--button-color-darker:#2D2D73;
+--elements-opacity:0.87;
+--footer-color:171,193,35;
+}
+
+
+/* Flipped */
+:root {
+--background-image:url("headbg3.jpg") no-repeat;
+--background-color:#166A35;
+--background-size:2200px 1000px;
+--link-color:#E7443A;
+--content-bg:#000000;
+--content-border:#4F5752;
+--content-color:#ffffff;
+--personal-color:#000000;
+--personal-border:#060606;
+--button-color:#E7443A;
+--button-color-med:#DA4036;
+--button-color-dark:#CE3C33;
+--button-color-darker:#C13830;
+--elements-opacity:0.91;
+--footer-color:0,0,0;
+}
+
+/* Mochito */
+:root {
+--background-image:url("headbg.jpg") no-repeat;
+--background-color:#d884b0;
+--background-size:2200px 1000px;
+--link-color:#07aab4;
+--content-bg:#eeeeee;
+--content-border:#a9070c;
+--content-color:#999999;
+--personal-color:#eeeeee;
+--personal-border:#e8e8e8;
+--button-color:#07AAB4;
+--button-color-med:#069EA7;
+--button-color-dark:#06929B;
+--button-color-darker:#05868E;
+--elements-opacity:0.91;
+--footer-color:238,238,238;
+}
+
+/* High Contrast A */
+:root {
+--background-image:url("none") no-repeat;
+--background-color:black;
+--background-size:2200px 1000px;
+--link-color:#8080ff;
+--content-bg:black;
+--content-border:white;
+--content-color:yellow;
+--personal-color:green;
+--personal-border:#ffffff;
+--button-color:#0000FF;
+--button-color-med:#0000F3;
+--button-color-dark:#0000E6;
+--button-color-darker:#0000D9;
+--elements-opacity:1;
+--footer-color:0,0,0;
+}
+
+/* High Contrast B */
+:root {
+--background-image:url("0") no-repeat;
+--background-color:black;
+--background-size:;
+--link-color:#8080ff;
+--content-bg:black;
+--content-border:white;
+--content-color:lime;
+--personal-color:blue;
+--personal-border:white;
+--button-color:#00FFFF;
+--button-color-med:#00F3F3;
+--button-color-dark:#00E6E6;
+--button-color-darker:#00D9D9;
+--elements-opacity:1;
+--footer-color:0,0,0;
+}
+
+/* Dark High Contrast */
+:root {
+--background-image:url("0") no-repeat;
+--background-color:black;
+--background-size:2200px 1000px;
+--link-color:yellow;
+--content-bg:black;
+--content-border:white;
+--content-color:white;
+--personal-color:cyan;
+--personal-border:black;
+--button-color:#37006E;
+--button-color-med:#300061;
+--button-color-dark:#2A0054;
+--button-color-darker:#230048;
+--elements-opacity:1;
+--footer-color:0,0,0;
+}
+
+/* Flipped High Contrast */
+:root {
+--background-image:url("0") no-repeat;
+--background-color:white;
+--background-size:2200px 1000px;
+--link-color:#00009f;
+--content-bg:white;
+--content-border:black;
+--content-color:#000000;
+--personal-color:#37006e;
+--personal-border:white;
+--button-color:#000000;
+--button-color-med:#000000;
+--button-color-dark:#000000;
+--button-color-darker:#000000;
+--elements-opacity:1;
+--footer-color:255,255,255;
+}
+
+/* Soda Saga */
+:root {
+--background-image:url("headbg4.jpg") no-repeat;
+--background-color:#790145;
+--background-size:2200px 1024px;
+--link-color:#a81b79;
+--content-bg:#ffffff;
+--content-border:#00dddd;
+--content-color:#000000;
+--personal-color:#00dddd;
+--personal-border:#f9f9f9;
+--button-color:#18AA17;
+--button-color-med:#169D15;
+--button-color-dark:#149113;
+--button-color-darker:#128411;
+--elements-opacity:0.9;
+--footer-color:0,221,221;
+}
+
+/* Referata Foundations */
+:root {
+--background-image:url("http://afoundations-revmap.referata.com/w/images/Besto-BACK.jpg") no-repeat;
+--background-color:#1a1b1c;
+--background-size:2200px 1000px;
+--link-color:#c1b1a1;
+--content-bg:#614655;
+--content-border:#f1f1e9;
+--content-color:#f7f7f8;
+--personal-color:#845b84;
+--personal-border:#f2f2ea;
+--button-color:#804040;
+--button-color-med:#733939;
+--button-color-dark:#663333;
+--button-color-darker:#5A2C2C;
+--elements-opacity:0.92;
+--footer-color:97,70,85;
+}
+
+/* Essay */
+:root {
+--background-image:url("headbg.jpg") no-repeat;
+--background-color:#f9d9c9;
+--background-size:2200px 1000px;
+--link-color:#960540;
+--content-bg:#d9e9f9;
+--content-border:#c1b9be;
+--content-color:#123456;
+--personal-color:#9f6e3d;
+--personal-border:#a1b2c3;
+--button-color:#10BA01;
+--button-color-med:#0FAD01;
+--button-color-dark:#0DA100;
+--button-color-darker:#0C9400;
+--elements-opacity:0.89;
+--footer-color:215,232,249;
+}
