@@ -63,7 +63,6 @@ background-color:rgba(var(--footer-color),var(--elements-opacity));
   transition:opacity 0.1s, background-color 0.1s, border 0.1s, color 0.1s;
 }
 
-
 .generated-sidebar .pBody:hover, #p-wikicities-nav .pBody:hover, #p-search .pBody:hover {
 	border-top:3px dashed var(--personal-border) !important;
 	opacity:var(--elements-opacity);
@@ -152,7 +151,7 @@ transition:0.05s;
 }
 
 
-#p-personal a {
+#p-personal li a {
 	font-size: 14px;
 	margin:0 2.5px;
 	text-transform: capitalize;
@@ -160,11 +159,16 @@ transition:0.05s;
    vertical-align:middle;
    padding-top:4px;
    padding-bottom:4px;
+   color:var(--content-border);
 }
-#p-personal a:hover{
+#p-personal li a:hover{
    text-decoration:none;
    color:var(--link-color);
    background-color:var(--content-bg);
+}
+
+#p-personal li a:active {
+	filter:none;
 }
 
 #p-personal li a {
@@ -256,6 +260,10 @@ text-transform:uppercase!important;
 
 }
 
+#p-cactions li a:active {
+	filter:none;
+}
+
 
 #p-cactions li:first-child,
 #p-cactions li:first-child + li, /* :nth-child(2) equivalent for IE8 */
@@ -304,6 +312,28 @@ text-transform:uppercase!important;
 	padding-top:1px;
 	text-align:right;
 }
+
+/* Συνδέσεις (Links) */
+a, .mw-parser-output a.external {
+	color:var(--link-color);
+	-qq-invert-style:classic; /* Fix for mInerkIt mInerva */
+}
+
+a:active, .mw-parser-output a.external:active {
+	color:var(--link-color);
+	filter:invert(1);
+}
+
+
+a[class*="oo-ui"]:active, #p-logo a:active {
+	filter:none;
+}
+
+a:visited, .mw-parser-output a.external:visited {
+	color:var(--button-color);
+}
+
+
 
 /* Headings */
 #firstHeading {
