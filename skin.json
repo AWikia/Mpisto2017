@@ -3,6 +3,7 @@
 	"author": [
 		"A Techno Services (Original Version)",
 		"Mpisto Scenes Community (2019 Re-release)",
+		"Qora Qore Telecommunities (2021 Re-release)",
 		"..."
 	],
 	"url": "https://www.mediawiki.org/wiki/Skin:Mpisto",
@@ -20,7 +21,7 @@
 		"mpisto": "Apex"
 	},
 	"DefaultUserOptions": {
-		"mpisto-responsive": false
+		"mpisto-responsive": true
 	},
 	"Hooks": {
 		"GetPreferences": "SkinMpisto::onGetPreferences",
@@ -33,6 +34,8 @@
 	},
 	"ResourceModules": {
 		"skins.mpisto.styles": {
+			"class": "ResourceLoaderSkinModule",
+			"features": [ "elements", "content", "interface", "logo", "legacy" ],
 			"styles": {
 				"resources/screen-common.less": {
 					"media": "screen"
@@ -46,7 +49,18 @@
 			}
 		},
 		"skins.mpisto.responsive": {
-			"targets": [ "desktop", "mobile" ],
+			"class": "ResourceLoaderSkinModule",
+			"features": [
+				"elements",
+				"content",
+				"interface",
+				"legacy",
+				"logo"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			],
 			"styles": {
 				"resources/screen-common.less": {
 					"media": "screen"
@@ -56,10 +70,15 @@
 				},
 				"resources/screen-mobile.less": {
 					"media": "screen and (max-width: 550px)"
+				},
+				"resources/do things simple.css": {
+					"media": "screen"
 				}
 			}
 		},
 		"skins.mpisto.mobile": {
+			"class": "ResourceLoaderSkinModule",
+			"features": [ "elements", "content", "interface", "logo", "legacy" ],
 			"targets": [ "desktop", "mobile" ],
 			"scripts": [
 				"resources/mobile.js"
@@ -81,15 +100,15 @@
 	"ResourceModuleSkinStyles": {
 		"mpisto": {
 			"+mediawiki.action.view.redirectPage": "resources/skinStyles/mediawiki.action.view.redirectPage.css",
-			"+mediawiki.special.preferences.styles": "resources/skinStyles/mediawiki.special.preferences.styles.less",
 			"+mediawiki.notification": "resources/skinStyles/mediawiki.notification.less",
 			"+oojs-ui-core.styles": "resources/skinStyles/ooui.less",
-			"+ext.uls.interface": "resources/skinStyles/ext.uls.interface.less"
+			"+ext.uls.interface": "resources/skinStyles/ext.uls.interface.less",
+			"+ext.relatedArticles.readMore": "resources/skinStyles/ext.relatedArticles.readMore.less"
 		}
 	},
 	"AutoloadClasses": {
 		"SkinMpisto": "includes/SkinMpisto.php",
 		"MpistoTemplate": "includes/MpistoTemplate.php"
 	},
-	"manifest_version": 1
+	"manifest_version": 2
 }
