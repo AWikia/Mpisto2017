@@ -29,6 +29,10 @@ More things will soon be changable with theme designer
 
 
 
+* {
+	outline:0px;
+}
+
 /* Body */
 body {
    background: var(--background-color) var(--background-image) center top fixed;
@@ -42,7 +46,7 @@ div#globalWrapper {
 
 
 /*Cactions*/
-#p-cactions {
+body #p-cactions {
 	top:70px;
   border-top:none!important;
 }
@@ -114,11 +118,11 @@ background-color:rgba(var(--footer-color),var(--elements-opacity));
 
 
 /* Personal Tools */
-#p-personal {
+body #p-personal {
 	z-index: 2;
 	margin-top:9px;
 }
-#p-personal .pBody {
+body #p-personal .pBody {
 	background-color:transparent;
 	border: 1px solid var(--personal-border);
 	right: 0;
@@ -127,7 +131,7 @@ background-color:rgba(var(--footer-color),var(--elements-opacity));
   padding:2px 0;
 }
 
-#p-personal .pBody::before {
+body #p-personal .pBody::before {
 	background-color:var(--personal-color);
 	content:"";
 	top:0;
@@ -141,7 +145,7 @@ background-color:rgba(var(--footer-color),var(--elements-opacity));
     	
 }
 
-#p-personal .pBody:hover::before {
+body #p-personal .pBody:hover::before {
  opacity:var(--elements-opacity);
  }
 
@@ -151,7 +155,7 @@ transition:0.05s;
 }
 
 
-#p-personal li a {
+body #p-personal li a {
 	font-size: 14px;
 	margin:0 2.5px;
 	text-transform: capitalize;
@@ -161,23 +165,23 @@ transition:0.05s;
    padding-bottom:4px;
    color:var(--content-border);
 }
-#p-personal li a:hover{
+body #p-personal li a:hover{
    text-decoration:none;
    color:var(--link-color);
    background-color:var(--content-bg);
 }
 
-#p-personal li a:active {
+body #p-personal li a:active {
 	filter:none;
 }
 
-#p-personal li a {
+body #p-personal li a {
   display: inline-block;
   background-repeat: no-repeat !important;
   overflow: hidden;
 }
 
-#p-personal li {
+body #p-personal li {
 margin-left: 0;
 }
 
@@ -190,7 +194,7 @@ li#pt-userpage, li#pt-anonuserpage {
 }
 
 /* Cactions */
-div#content {
+body div#content {
   color:var(--content-color);
   font-family:'Arial Nova', Arial;
 	top:59px;
@@ -200,7 +204,7 @@ div#content {
 }
 
 /* Fixes on the Rerelease */
-div#content::after {
+body div#content::after {
 	content:"";
 	position:absolute;
 	background-color:var(--content-bg) ;	
@@ -214,23 +218,24 @@ div#content::after {
 }
 
 
-div#content img {
+body div#content img {
 opacity:1!important;
 }
 
 
-#p-cactions li a {
+body #p-cactions li a {
   padding:0 5px;
+  border:none;
 }
 
-#p-cactions li.selected a, #p-cactions li.selected{
+body #p-cactions li.selected a, body #p-cactions li.selected{
   background-color:var(--content-bg);
   color:var(--link-color);
   border:none;
   font-family:'Arial Nova', Arial;
   text-transform:uppercase!important;
 }
-#p-cactions li.selected a, #p-cactions li a.selected{
+body #p-cactions li.selected a, body #p-cactions li a.selected{
 background-color:var(--content-bg);
 font-family:'Arial Nova', Arial;
 color:var(--link-color);
@@ -239,7 +244,7 @@ font-weight:bold!important;
 text-transform:uppercase!important;
 }
 
-#p-cactions li a {
+body #p-cactions li a {
   background-color:var(--content-bg) ;
 	color:var(--link-color);
   border:none;
@@ -249,7 +254,7 @@ text-transform:uppercase!important;
    transition:color 0.1s, background-color 0.1s, text-shadow 0.1s;
 }
 
-#p-cactions li a:hover,#p-cactions li:hover {
+body #p-cactions li a:hover, body #p-cactions li:hover {
   background-color:var(--content-bg) ;
 	color:var(--content-color);
 	text-shadow:.2px .22px .24px var(--link-color);
@@ -260,18 +265,18 @@ text-transform:uppercase!important;
 
 }
 
-#p-cactions li a:active {
+body #p-cactions li a:active {
 	filter:none;
 }
 
 
-#p-cactions li:first-child,
-#p-cactions li:first-child + li, /* :nth-child(2) equivalent for IE8 */
-#p-cactions #ca-contribs {
+body #p-cactions li:first-child,
+body #p-cactions li:first-child + li, /* :nth-child(2) equivalent for IE8 */
+body #p-cactions #ca-contribs {
     float: left;
 }
  
-#p-cactions li {
+body #p-cactions li {
   background-color:var(--content-bg) ;
   color:var(--link-color);
   border:none;
@@ -280,21 +285,21 @@ text-transform:uppercase!important;
   padding:0;
 }
 
-#p-cactions li:first-child a,
-#p-cactions li:first-child + li a,
-#p-cactions #ca-contribs a {
+body #p-cactions li:first-child a,
+body #p-cactions li:first-child + li a,
+body #p-cactions #ca-contribs a {
     display: inline;
 }
  
 
-#p-cactions ul {
+body #p-cactions ul {
         background-color:var(--content-bg) ;
         font-family:'Arial Nova', Arial;
         border:none;
         text-transform:uppercase!important
 }
 
-#p-cactions {
+body #p-cactions {
 	font-size:100%;
 	width:100%;
 	height:auto;
@@ -304,7 +309,7 @@ text-transform:uppercase!important;
   text-transform:uppercase!important;
 }
 
-#p-cactions .pBody {
+body #p-cactions .pBody {
 	margin-left: 12.225em;
 	background:var(--content-bg);
 	line-height:1.1em;
@@ -314,22 +319,22 @@ text-transform:uppercase!important;
 }
 
 /* Συνδέσεις (Links) */
-a, .mw-parser-output a.external {
+body a, .mw-parser-output a.external {
 	color:var(--link-color);
 	-qq-invert-style:classic; /* Fix for mInerkIt mInerva */
 }
 
-a:active, .mw-parser-output a.external:active {
+body a:active, .mw-parser-output a.external:active {
 	color:var(--link-color);
 	filter:invert(1);
 }
 
 
-a[class*="oo-ui"]:active, #p-logo a:active {
+body a[class*="oo-ui"]:active, #p-logo a:active {
 	filter:none;
 }
 
-a:visited, .mw-parser-output a.external:visited {
+body a:visited, .mw-parser-output a.external:visited {
 	color:var(--button-color);
 }
 
@@ -872,8 +877,8 @@ box-shadow:0 0 1px 1px var(--content-color);
   border-radius:25%;
   position:relative;
   transition:background-color 50ms, box-shadow 50ms, color 50ms, opacity 50ms;
-  height:1.3em;
-  width:1.3em;
+  height:1.5em;
+  width:1.5em;
   display:inline-block;
   vertical-align:middle;
   -moz-appearance:none;
@@ -974,7 +979,7 @@ box-shadow:0 0 1px 1px var(--content-color);
 }
 
 input[type="checkbox"]:checked, input[type="radio"]:checked,
-input[type="checkbox"]:indeterminate, input[type="radio"]:indeterminate  {
+input[type="checkbox"]:indeterminate {
 /*
   background-color:#000;
   background-color:var(--content-color);
@@ -987,7 +992,7 @@ input[type="checkbox"]:indeterminate, input[type="radio"]:indeterminate  {
 
 
 input[type="checkbox"]:checked:hover, input[type="radio"]:checked:hover,
-input[type="checkbox"]:indeterminate:hover, input[type="radio"]:indeterminate:hover {
+input[type="checkbox"]:indeterminate:hover {
 /*
   background-color:#fff;
   background-color:var(--content-bg);
@@ -999,7 +1004,7 @@ input[type="checkbox"]:indeterminate:hover, input[type="radio"]:indeterminate:ho
 
 
 input[type="checkbox"]:checked:active, input[type="radio"]:checked:active,
-input[type="checkbox"]:indeterminate:active, input[type="radio"]:indeterminate:active  {
+input[type="checkbox"]:indeterminate:active {
 /*box-shadow:0 0 1px 1px white;
 box-shadow:0 0 1px 1px var(--button-color-text);
   color:#18bbc5;
@@ -1025,16 +1030,16 @@ input[type="checkbox"]::-ms-check, input[type="radio"]::-ms-check {
 
 @media only screen and (min-width: 1px) and (max-width: 1023px) {
 /* Shirning the first heading area */
-div#content #firstHeading {
+body div#content #firstHeading {
 font-size:187%;
 }
 
 /* Dispaly the personal tools differently */
-#p-personal li {
+body #p-personal li {
 float: none !important;
 }
 
-#p-cactions h5 span {
+body #p-cactions h5 span {
 	display: inline-block;
 	width: 0;
 	overflow: hidden;
@@ -1119,12 +1124,12 @@ background-image:none!important;
 
 
 /* Shirking the Cactions area */
-#p-cactions, #p-cactions li, #p-cactions ul, #p-cactiosn li a:hover, #p-cactions li a.selected {
+body #p-cactions, body #p-cactions li, body #p-cactions ul, #p-cactiosn li a:hover, body #p-cactions li a.selected {
 	font-size:93%;
 	margin-top:2.5px
 }
 
-#p-cactions .pBody {
+body #p-cactions .pBody {
 	height:1.8em;
 }
 
@@ -1138,15 +1143,15 @@ left:0;
 }
 
 /* Shift the area */
-div#content{
+body div#content{
 margin-left: 10.9em;
 }
 
-#p-cactions {
+body #p-cactions {
 margin-left:-0.5em;
 }
 
-#p-cactions .pBody {
+body #p-cactions .pBody {
 	margin-right:-0.5em;
 }
 
@@ -1160,13 +1165,13 @@ width: 10.9em;
 body {
 font-size:14px;
 }
-#p-cactions {
+body #p-cactions {
 	margin-top:0.25em;
 	font-size:100%;
 }
 
 
-#p-cactions li, #p-cactions ul, #p-cactions li a.selected {
+body #p-cactions li, body #p-cactions ul, body #p-cactions li a.selected {
   font-size:90%;
 }
 
@@ -1212,4 +1217,3 @@ button.big {
 	height: 46px;
 }
 }
-
