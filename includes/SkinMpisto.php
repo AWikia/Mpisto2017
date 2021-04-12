@@ -37,7 +37,7 @@ class SkinMpisto extends SkinTemplate {
 	/**
 	 * @param OutputPage $out
 	 */
-	function setupSkinUserCss( OutputPage $out ) {
+	public function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 
 		if ( $out->getUser()->getOption( 'mpisto-responsive' ) ) {
@@ -61,17 +61,13 @@ class SkinMpisto extends SkinTemplate {
 		}
 
 		$out->addModuleStyles( [
-			'mediawiki.skinning.interface',
 			'mediawiki.skinning.content.externallinks',
 			$styleModule
 		] );
 
-		// TODO: Migrate all of these (get RL support for conditional IE)
 		// Force desktop styles in IE 8-; no support for @media widths
+		// FIXME: Remove conditional comment dependency.
 		$out->addStyle( $this->stylename . '/resources/screen-desktop.css', 'screen', 'lt IE 9' );
-		// Miscellanious fixes
-		$out->addStyle( $this->stylename . '/resources/IE60Fixes.css', 'screen', 'IE 6' );
-		$out->addStyle( $this->stylename . '/resources/IE70Fixes.css', 'screen', 'IE 7' );
 	}
 
 	/**
@@ -79,13 +75,14 @@ class SkinMpisto extends SkinTemplate {
 	 * @param array &$preferences
 	 */
 	public static function onGetPreferences( User $user, array &$preferences ) {
-		if ( $user->getOption( 'skin' ) === 'mpisto' ) {
-			$preferences['mpisto-responsive'] = [
-				'type' => 'toggle',
-				'label-message' => 'mpisto-responsive-label',
-				'section' => 'rendering/skin',
-			];
-		}
+		$preferences['mpisto-responsive'] = [
+			'type' => 'toggle',
+			'label-message' => 'mpisto-responsive-label',
+			'section' => 'rendering/skin/skin-prefs',
+			// Only show this section when the Mpisto skin is checked. The JavaScript client also uses
+			// this state to determine whether to show or hide the whole section.
+			'hide-if' => [ '!==', 'wpskin', 'mpisto' ],
+		];
 	}
 
 	/**
@@ -94,7 +91,7 @@ class SkinMpisto extends SkinTemplate {
 	 *
 	 * @param ResourceLoader $resourceLoader
 	 */
-	static function registerMobileExtensionStyles( ResourceLoader $resourceLoader ) {
+	public static function registerMobileExtensionStyles( ResourceLoader $resourceLoader ) {
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			$resourceLoader->register( 'skins.mpisto.mobile.echohack', [
 				'localBasePath' => __DIR__ . '/..',
@@ -105,7 +102,7 @@ class SkinMpisto extends SkinTemplate {
 				'styles' => [ 'resources/mobile-echo.less' => [
 					'media' => 'screen and (max-width: 550px)'
 				] ],
-				'dependencies' => [ 'ext.echo.badgeicons', 'mediawiki.util' ],
+				'dependencies' => [ 'oojs-ui.styles.icons-alerts', 'mediawiki.util' ],
 				'messages' => [ 'mpisto-notifications-link', 'mpisto-notifications-link-none' ]
 			] );
 		}
@@ -115,7 +112,7 @@ class SkinMpisto extends SkinTemplate {
 				'localBasePath' => __DIR__ . '/..',
 				'remoteSkinPath' => 'Mpisto',
 
-				'targets' => [ 'desktop', 'mobile' ],
+				'targets' => [ 'desktop' ],
 				'scripts' => [ 'resources/mobile-uls.js' ],
 				'dependencies' => [ 'ext.uls.interface' ],
 			] );

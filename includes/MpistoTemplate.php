@@ -83,11 +83,11 @@ class MpistoTemplate extends BaseTemplate {
 				$this->getIfExists( 'catlinks' ) .
 
 				'<!-- end content -->' .
-				$this->getIfExists( 'dataAfterContent' ) .
 				$this->getClear()
 			)
 		);
 		$html .= $this->deprecatedHookHack( 'MpistoAfterContent' );
+		$html .= $this->getIfExists( 'dataAfterContent' ) . $this->getClear();
 		$html .= Html::closeElement( 'div' );
 
 		$html .= Html::rawElement( 'div',
@@ -197,7 +197,9 @@ class MpistoTemplate extends BaseTemplate {
 			'id' => 'ca-tools',
 			'title' => $this->getMsg( 'toolbox' )->text()
 		];
-		if ( $this->data['language_urls'] !== false ) {
+
+		$languages = $this->data['sidebar']['LANGUAGES'];
+		if ( $languages !== false ) {
 			$tabs['languages'] = [
 				'text' => $this->getMsg( 'otherlanguages' )->text(),
 				'href' => '#p-lang',
@@ -215,19 +217,16 @@ class MpistoTemplate extends BaseTemplate {
 	 * Generate the full sidebar
 	 *
 	 * @return string html
+	 * @suppress PhanTypeMismatchArgument $content is an array
+	 * even though we are comparing it to boolean
 	 */
 	protected function getRenderedSidebar() {
 		$sidebar = $this->data['sidebar'];
 		$html = '';
+		$languagesHTML = '';
 
 		if ( !isset( $sidebar['SEARCH'] ) ) {
 			$sidebar['SEARCH'] = true;
-		}
-		if ( !isset( $sidebar['TOOLBOX'] ) ) {
-			$sidebar['TOOLBOX'] = true;
-		}
-		if ( !isset( $sidebar['LANGUAGES'] ) ) {
-			$sidebar['LANGUAGES'] = true;
 		}
 
 		foreach ( $sidebar as $boxName => $content ) {
@@ -241,9 +240,9 @@ class MpistoTemplate extends BaseTemplate {
 			if ( $boxName == 'SEARCH' ) {
 				$html .= $this->getSearchBox();
 			} elseif ( $boxName == 'TOOLBOX' ) {
-				$html .= $this->getToolboxBox();
+				$html .= $this->getToolboxBox( $content );
 			} elseif ( $boxName == 'LANGUAGES' ) {
-				$html .= $this->getLanguageBox();
+				$languagesHTML = $this->getLanguageBox( $content );
 			} else {
 				$html .= $this->getBox(
 					$boxName,
@@ -254,7 +253,9 @@ class MpistoTemplate extends BaseTemplate {
 			}
 		}
 
-		return $html;
+		// Output language portal last given it can be long
+		// on articles which support multiple languages (T254546)
+		return $html . $languagesHTML;
 	}
 
 	/**
@@ -266,7 +267,7 @@ class MpistoTemplate extends BaseTemplate {
 		$html = '';
 
 		if ( $this->config->get( 'UseTwoButtonsSearchForm' ) ) {
-			$optionButtons = '&#160; ' . $this->makeSearchButton(
+			$optionButtons = "\u{00A0} " . $this->makeSearchButton(
 				'fulltext',
 				[ 'id' => 'mw-searchButton', 'class' => 'searchButton' ]
 			);
@@ -300,19 +301,13 @@ class MpistoTemplate extends BaseTemplate {
 	/**
 	 * Generate the toolbox, complete with all three old hooks
 	 *
+	 * @param array $toolboxItems
 	 * @return string html
 	 */
-	protected function getToolboxBox() {
+	protected function getToolboxBox( $toolboxItems ) {
 		$html = '';
-		$skin = $this;
 
-		$html .= $this->getBox( 'tb', $this->getToolbox(), 'toolbox', [ 'hooks' => [
-			// Deprecated hooks
-			'MpistoTemplateToolboxEnd' => [ &$skin ],
-			'SkinTemplateToolboxEnd' => [ &$skin, true ]
-		] ] );
-
-		$html .= $this->deprecatedHookHack( 'MpistoAfterToolbox' );
+		$html .= $this->getBox( 'tb', $toolboxItems, 'toolbox' );
 
 		return $html;
 	}
@@ -320,13 +315,20 @@ class MpistoTemplate extends BaseTemplate {
 	/**
 	 * Generate the languages box
 	 *
+	 * @param array $languages Interwiki language links
 	 * @return string html
 	 */
-	protected function getLanguageBox() {
+	protected function getLanguageBox( $languages ) {
 		$html = '';
+		$name = 'lang';
 
-		if ( $this->data['language_urls'] !== false ) {
-			$html .= $this->getBox( 'lang', $this->data['language_urls'], 'otherlanguages' );
+		if (
+			$languages !== [] ||
+			// Check getAfterPortlet to make sure the languages are shown
+			// when empty but something has been injected in the portal. (T252841)
+			$this->getAfterPortlet( $name )
+		) {
+			$html .= $this->getBox( $name, $languages, 'otherlanguages' );
 		}
 
 		return $html;
@@ -337,20 +339,18 @@ class MpistoTemplate extends BaseTemplate {
 	 *
 	 * @param string $name
 	 * @param array|string $contents
+	 * @param-taint $contents escapes_htmlnoent
 	 * @param null|string|array|bool $msg
 	 * @param array $setOptions
 	 *
 	 * @return string html
 	 */
 	protected function getBox( $name, $contents, $msg = null, $setOptions = [] ) {
-		$options = [
+		$options = array_merge( [
 			'class' => 'portlet',
 			'body-class' => 'pBody',
 			'text-wrapper' => ''
-		];
-		foreach ( $setOptions as $key => $value ) {
-			$options[$key] = $value;
-		}
+		], $setOptions );
 
 		// Do some special stuff for the personal menu
 		if ( $name == 'personal' ) {
@@ -385,10 +385,11 @@ class MpistoTemplate extends BaseTemplate {
 	 * @param array $setOptions random crap to rename/do/whatever
 	 *
 	 * @return string html
+	 * @suppress PhanTypeMismatchArgumentNullable Many false positives
 	 */
 	protected function getPortlet( $name, $content, $msg = null, $setOptions = [] ) {
 		// random stuff to override with any provided options
-		$options = [
+		$options = array_merge( [
 			// handle role=search a little differently
 			'role' => 'navigation',
 			'search-input-id' => 'searchInput',
@@ -401,15 +402,9 @@ class MpistoTemplate extends BaseTemplate {
 			'body-extra-classes' => '',
 			// wrapper for individual list items
 			'text-wrapper' => [ 'tag' => 'span' ],
-			// old toolbox hook support (use: [ 'SkinTemplateToolboxEnd' => [ &$skin, true ] ])
-			'hooks' => '',
 			// option to stick arbitrary stuff at the beginning of the ul
 			'list-prepend' => ''
-		];
-		// set options based on input
-		foreach ( $setOptions as $key => $value ) {
-			$options[$key] = $value;
-		}
+		], $setOptions );
 
 		// Handle the different $msg possibilities
 		if ( $msg === null ) {
@@ -450,13 +445,6 @@ class MpistoTemplate extends BaseTemplate {
 					);
 				}
 			}
-			// Compatibility with extensions still using SkinTemplateToolboxEnd or similar
-			if ( is_array( $options['hooks'] ) ) {
-				foreach ( $options['hooks'] as $hook => $hookOptions ) {
-					$contentText .= $this->deprecatedHookHack( $hook, $hookOptions );
-				}
-			}
-
 			$contentText .= Html::closeElement( 'ul' );
 		} else {
 			$contentText = $content;
@@ -526,7 +514,7 @@ class MpistoTemplate extends BaseTemplate {
 	 * We no longer do things that way.
 	 *
 	 * @param string $hook event
-	 * @param array $hookOptions args
+	 * @param mixed $hookOptions args
 	 *
 	 * @return string html
 	 */
@@ -563,8 +551,10 @@ class MpistoTemplate extends BaseTemplate {
 
 		$html = '';
 
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( ( $options['loose'] && $this->data[$object] != '' ) ||
 			( !$options['loose'] && $this->data[$object] ) ) {
+			// @phan-suppress-previous-line PhanRedundantCondition
 			if ( $options['wrapper'] == 'none' ) {
 				$html .= $this->get( $object );
 			} else {
@@ -592,6 +582,7 @@ class MpistoTemplate extends BaseTemplate {
 
 		$html .= Html::openElement( 'div', [
 			'id' => 'footer',
+			'class' => 'mw-footer',
 			'role' => 'contentinfo',
 			'lang' => $this->get( 'userlang' ),
 			'dir' => $this->get( 'dir' )
