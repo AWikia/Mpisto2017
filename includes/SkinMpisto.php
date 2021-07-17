@@ -35,39 +35,32 @@ class SkinMpisto extends SkinTemplate {
 	public $template = 'MpistoTemplate';
 
 	/**
+	 * @inheritDoc
+	 * @return bool
+	 */
+	public function isResponsive() {
+		return $this->getUser()->getOption( 'mpisto-responsive' );
+	}
+
+	/**
+	 * @inheritDoc
 	 * @param OutputPage $out
 	 */
-	public function setupSkinUserCss( OutputPage $out ) {
-		parent::setupSkinUserCss( $out );
+	public function initPage( OutputPage $out ) {
+		parent::initPage( $out );
 
-		if ( $out->getUser()->getOption( 'mpisto-responsive' ) ) {
-			$out->addMeta( 'viewport',
-				'width=device-width, initial-scale=1.0, ' .
-				'user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0'
-			);
+		if ( $this->isResponsive() ) {
 			$styleModule = 'skins.mpisto.responsive';
 			$out->addModules( [
 				'skins.mpisto.mobile'
 			] );
-
-			if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) && $out->getUser()->isLoggedIn() ) {
-				$out->addModules( [ 'skins.mpisto.mobile.echohack' ] );
-			}
-			if ( ExtensionRegistry::getInstance()->isLoaded( 'UniversalLanguageSelector' ) ) {
-				$out->addModules( [ 'skins.mpisto.mobile.uls' ] );
-			}
 		} else {
 			$styleModule = 'skins.mpisto.styles';
 		}
 
 		$out->addModuleStyles( [
-			'mediawiki.skinning.content.externallinks',
 			$styleModule
 		] );
-
-		// Force desktop styles in IE 8-; no support for @media widths
-		// FIXME: Remove conditional comment dependency.
-		$out->addStyle( $this->stylename . '/resources/screen-desktop.css', 'screen', 'lt IE 9' );
 	}
 
 	/**
@@ -79,43 +72,9 @@ class SkinMpisto extends SkinTemplate {
 			'type' => 'toggle',
 			'label-message' => 'mpisto-responsive-label',
 			'section' => 'rendering/skin/skin-prefs',
-			// Only show this section when the Mpisto skin is checked. The JavaScript client also uses
+			// Only show this section when the Monobook skin is checked. The JavaScript client also uses
 			// this state to determine whether to show or hide the whole section.
 			'hide-if' => [ '!==', 'wpskin', 'mpisto' ],
 		];
-	}
-
-	/**
-	 * Handler for ResourceLoaderRegisterModules hook
-	 * Check if extensions are loaded
-	 *
-	 * @param ResourceLoader $resourceLoader
-	 */
-	public static function registerMobileExtensionStyles( ResourceLoader $resourceLoader ) {
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			$resourceLoader->register( 'skins.mpisto.mobile.echohack', [
-				'localBasePath' => __DIR__ . '/..',
-				'remoteSkinPath' => 'Mpisto',
-
-				'targets' => [ 'desktop', 'mobile' ],
-				'scripts' => [ 'resources/mobile-echo.js' ],
-				'styles' => [ 'resources/mobile-echo.less' => [
-					'media' => 'screen and (max-width: 550px)'
-				] ],
-				'dependencies' => [ 'oojs-ui.styles.icons-alerts', 'mediawiki.util' ],
-				'messages' => [ 'mpisto-notifications-link', 'mpisto-notifications-link-none' ]
-			] );
-		}
-
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'UniversalLanguageSelector' ) ) {
-			$resourceLoader->register( 'skins.mpisto.mobile.uls', [
-				'localBasePath' => __DIR__ . '/..',
-				'remoteSkinPath' => 'Mpisto',
-
-				'targets' => [ 'desktop' ],
-				'scripts' => [ 'resources/mobile-uls.js' ],
-				'dependencies' => [ 'ext.uls.interface' ],
-			] );
-		}
 	}
 }

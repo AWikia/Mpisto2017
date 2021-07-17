@@ -28,6 +28,13 @@ More things will soon be changable with theme designer
 }
 
 
+/* OOUI */
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
+	background-color:var(--content-bg);
+	color:var(--content-color);
+	border-color:var(--content-border);
+}
+
 
 * {
 	outline:0px;
@@ -57,22 +64,23 @@ margin-top: 55px;
 background-color:rgba(var(--footer-color),var(--elements-opacity));
 }
 
-.generated-sidebar .pBody, #p-wikicities-nav .pBody, #p-search .pBody{
+.generated-sidebar .pBody, #p-wikicities-nav .pBody, #p-search .pBody, #p-tb .pBody, #p-lang .pBody{
 	border-left:0;
-	border-top:3px dashed #aaa;
+	border-top:3px dashed var(--content-border);
 	border-bottom:0;
 	border-right:0;
   background-color: transparent;
   color:var(--link-color);
+  background-color:var(--content-bg);
   transition:opacity 0.1s, background-color 0.1s, border 0.1s, color 0.1s;
 }
 
-.generated-sidebar .pBody:hover, #p-wikicities-nav .pBody:hover, #p-search .pBody:hover {
-	border-top:3px dashed var(--personal-border) !important;
+.generated-sidebar .pBody:hover, #p-wikicities-nav .pBody:hover, #p-search .pBody:hover, #p-tb .pBody:hover, #p-lang .pBody:hover {
+	border-top:3px dashed var(--content-color) !important;
 	opacity:var(--elements-opacity);
 }
 
-/* Tools Body */
+/* Tools Body 
 #p-tb .pBody {
 	border-left:0;
 	border-top:4px double #aaa;
@@ -96,7 +104,7 @@ background-color:rgba(var(--footer-color),var(--elements-opacity));
 
 
 
-/* Languages Body */
+/* Languages Body 
 #p-lang .pBody {
 	border-left: 1px dashed #aaa;
 	border-top:2px dashed #aaa;
@@ -164,11 +172,13 @@ body #p-personal li a {
    padding-top:4px;
    padding-bottom:4px;
    color:var(--content-border);
+   text-shadow: 0 0 1px var(--personal-border), 0 0 1.5px var(--personal-border), 0 0 2px var(--personal-border), 0 0 2.5px var(--personal-border);
 }
 body #p-personal li a:hover{
    text-decoration:none;
    color:var(--link-color);
    background-color:var(--content-bg);
+   text-shadow:none;
 }
 
 body #p-personal li a:active {
@@ -335,7 +345,7 @@ body a[class*="oo-ui"]:active, #p-logo a:active {
 }
 
 body a:visited, .mw-parser-output a.external:visited {
-	color:var(--button-color);
+	color:var(--content-border);
 }
 
 
@@ -348,7 +358,12 @@ font-weight:bold;
 margin-top:1px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+body h1, 
+body h2, 
+body h3, 
+body h4, 
+body h5, 
+body h6 {
 color:var(--content-color);
 }
 
@@ -629,7 +644,7 @@ background-color:var(--personal-color);
 opacity:0.99!important; /* Should not accuire Elements opacity in this */
 }
 
-.mpisto-module h1 {
+body .mpisto-module h1 {
 size:107%;
 font-weight:bold;
 float:left!important;
@@ -638,7 +653,7 @@ color:var(--personal-border);
 
 }
 
-.mpisto-module h2 {
+body .mpisto-module h2 {
 size:98%;
 font-weight:bold;
 float:left!important;
@@ -1023,6 +1038,12 @@ input[type="checkbox"]::-ms-check, input[type="radio"]::-ms-check {
   background-color:transparent;
   border-width:0;
   color:inherit;
+}
+
+/* Pref tocs */
+.mw-prefs-buttons {
+	color:var(--content-color);
+	background-color:var(--content-bg);
 }
 
 

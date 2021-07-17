@@ -12,7 +12,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "skin",
 	"requires": {
-		"MediaWiki": ">= 1.29.0"
+		"MediaWiki": ">= 1.36.0"
 	},
 	"ValidSkinNames": {
 		"mpisto": "Mpisto"
@@ -23,9 +23,11 @@
 	"DefaultUserOptions": {
 		"mpisto-responsive": true
 	},
+	"SkinLessImportPaths": {
+		"mpisto": "resources/mediawiki.less"
+	},
 	"Hooks": {
-		"GetPreferences": "SkinMpisto::onGetPreferences",
-		"ResourceLoaderRegisterModules": "SkinMpisto::registerMobileExtensionStyles"
+		"GetPreferences": "SkinMpisto::onGetPreferences"
 	},
 	"MessagesDirs": {
 		"Mpisto": [
@@ -35,28 +37,41 @@
 	"ResourceModules": {
 		"skins.mpisto.styles": {
 			"class": "ResourceLoaderSkinModule",
-			"features": [ "elements", "content", "interface", "logo", "legacy" ],
+			"features": {
+				"normalize": true,
+				"elements": true,
+				"content": true,
+				"content-links": true,
+				"interface": true,
+				"logo": true,
+				"legacy": true
+			},
 			"styles": {
 				"resources/screen-common.less": {
 					"media": "screen"
 				},
-				"resources/screen-desktop.css": {
+				"resources/screen-desktop.less": {
 					"media": "screen"
 				},
 				"resources/do things simple.css": {
 					"media": "screen"
+				},
+				"resources/print-common.less": {
+					"media": "print"
 				}
 			}
 		},
 		"skins.mpisto.responsive": {
 			"class": "ResourceLoaderSkinModule",
-			"features": [
-				"elements",
-				"content",
-				"interface",
-				"legacy",
-				"logo"
-			],
+			"features": {
+				"normalize": true,
+				"elements": true,
+				"content": true,
+				"content-links": true,
+				"interface": true,
+				"legacy": true,
+				"logo": true
+			},
 			"targets": [
 				"desktop",
 				"mobile"
@@ -65,23 +80,52 @@
 				"resources/screen-common.less": {
 					"media": "screen"
 				},
-				"resources/screen-desktop.css": {
+				"resources/screen-desktop.less": {
 					"media": "screen and (min-width: 551px)"
 				},
 				"resources/screen-mobile.less": {
 					"media": "screen and (max-width: 550px)"
 				},
-				"resources/do things simple.css": {
-					"media": "screen"
+				"resources/print-common.less": {
+					"media": "print"
 				}
 			}
 		},
+		"skins.mpisto.mobile.uls": {
+			"targets": [ "desktop", "mobile" ],
+			"scripts": [ "resources/mobile-uls.js" ]
+		},
+		"skins.mpisto.mobile.echohack": {
+			"targets": [ "desktop", "mobile" ],
+			"scripts": [ "resources/mobile-echo.js" ],
+			"styles": {
+				"resources/mobile-echo.less": {
+					"media": "screen and (max-width: 550px)"
+				}
+			},
+			"dependencies": [
+				"oojs-ui.styles.icons-alerts",
+				"mediawiki.util"
+			],
+			"messages": [
+				"mpisto-notifications-link",
+				"mpisto-notifications-link-none"
+			]
+		},
 		"skins.mpisto.mobile": {
 			"class": "ResourceLoaderSkinModule",
-			"features": [ "elements", "content", "interface", "logo", "legacy" ],
+			"features": {
+				"normalize": true,
+				"elements": true,
+				"content": true,
+				"interface": true,
+				"logo": true,
+				"legacy": true
+			},
 			"targets": [ "desktop", "mobile" ],
-			"scripts": [
-				"resources/mobile.js"
+			"packageFiles": [
+				"resources/mobile.js",
+				"resources/optional-enhancements.js"
 			],
 			"styles": {
 				"resources/mobile.js.less": {
